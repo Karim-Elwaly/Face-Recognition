@@ -11,10 +11,12 @@ A high-performance, modular face recognition system combining:
 
 ## Environment Setup
 
-Using your virtual environment at `D:\cpc\.venv`:
+Activate the virtual environment from the project directory (`Face/`):
 ```powershell
-& "D:\cpc\.venv\Scripts\activate.ps1"
+# Activate venv using relative path
+..\.venv\Scripts\Activate.ps1
 ```
+*(Or invoke Python directly with relative path: `..\.venv\Scripts\python.exe <command>`)*
 
 ---
 
@@ -22,23 +24,23 @@ Using your virtual environment at `D:\cpc\.venv`:
 
 ### A. Register a single person from a photo
 ```powershell
-& "D:\cpc\.venv\Scripts\python.exe" register.py --name "Karim ElWaly" --image "path\to\photo.jpg" --device cpu
+python register.py --name "Karim ElWaly" --image "data\sample.jpg" --device cpu
 ```
 
 ### B. Batch register a directory of photos
 Organize photos either by file name (`alice.jpg`, `bob.jpg`) or subfolders (`data/known_faces/Karim/1.jpg`, `data/known_faces/Karim/2.jpg`):
 ```powershell
-& "D:\cpc\.venv\Scripts\python.exe" register.py --scan-dir "data/known_faces" --device cpu
+python register.py --scan-dir "data\known_faces" --device cpu
 ```
 
 ### C. List enrolled identities
 ```powershell
-& "D:\cpc\.venv\Scripts\python.exe" register.py --list
+python register.py --list
 ```
 
 ### D. Remove an identity
 ```powershell
-& "D:\cpc\.venv\Scripts\python.exe" register.py --remove "Karim ElWaly"
+python register.py --remove "Karim ElWaly"
 ```
 
 ---
@@ -48,10 +50,10 @@ Organize photos either by file name (`alice.jpg`, `bob.jpg`) or subfolders (`dat
 Run live detection and identification on your webcam:
 ```powershell
 # Run on CPU (default)
-& "D:\cpc\.venv\Scripts\python.exe" live_cam.py --device cpu --cam 0
+python live_cam.py --device cpu --cam 0
 
 # Run on GPU (optional acceleration)
-& "D:\cpc\.venv\Scripts\python.exe" live_cam.py --device cuda --cam 0
+python live_cam.py --device cuda --cam 0
 ```
 
 ### In-Camera Keyboard Controls:
@@ -64,7 +66,7 @@ Run live detection and identification on your webcam:
 
 Analyze any static photo, identify all faces, and optionally save the annotated result:
 ```powershell
-& "D:\cpc\.venv\Scripts\python.exe" recognize_image.py --image "path\to\test.jpg" --device cpu --save "output.jpg"
+python recognize_image.py --image "data\sample.jpg" --device cpu --save "data\output.jpg"
 ```
 
 ---
@@ -73,7 +75,7 @@ Analyze any static photo, identify all faces, and optionally save the annotated 
 
 Launch the web application to register faces, upload images for testing, and view live camera feeds through your web browser:
 ```powershell
-& "D:\cpc\.venv\Scripts\python.exe" app.py --port 8000 --device cpu
+python app.py --port 8000 --device cpu
 ```
 Then open [http://localhost:8000](http://localhost:8000) in your browser.
 
@@ -83,7 +85,7 @@ Then open [http://localhost:8000](http://localhost:8000) in your browser.
 
 Run the test suite on CPU:
 ```powershell
-& "D:\cpc\.venv\Scripts\python.exe" tests/test_pipeline.py
+python tests\test_pipeline.py
 ```
 
 ---
@@ -91,7 +93,7 @@ Run the test suite on CPU:
 ## Architecture & Project Structure
 
 ```
-d:\cpc\Face/
+Face/
 ├── weights/
 │   └── yolo11n-face.pt          # YOLO11-Face detector weights
 ├── data/
@@ -111,11 +113,11 @@ d:\cpc\Face/
 ├── static/
 │   └── index.html               # Web UI (drag-and-drop registration & feed)
 ├── tests/
+│   ├── __init__.py
 │   └── test_pipeline.py         # Automated test suite
 ├── requirements.txt             # Dependency reference
 ├── ARCHITECTURE.md              # Detailed technical architecture & math specs
 └── README.md                    # Quick-start documentation and CLI guide
 ```
 
-For complete technical details, mathematical formulations, and API specifications, see [ARCHITECTURE.md](file:///d:/cpc/Face/ARCHITECTURE.md).
-
+For complete technical details, mathematical formulations, and API specifications, see [ARCHITECTURE.md](ARCHITECTURE.md).
