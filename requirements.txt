@@ -1,0 +1,12 @@
+# Face Recognition System Dependencies (Already installed in D:\cpc\.venv)
+ultralytics>=8.3.0
+facenet-pytorch>=2.6.0
+torch>=2.5.0
+torchvision>=0.20.0
+opencv-python>=4.10.0
+numpy>=1.26.0
+Pillow>=10.0.0
+fastapi>=0.115.0
+uvicorn>=0.30.0
+python-multipart>=0.0.9
+
